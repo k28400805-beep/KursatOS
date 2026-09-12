@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>KürşatOS</title>
+
+    <meta
+        name="description"
+        content="KürşatOS - Mini oyunlar, gizemler, krallık sistemi ve eğlenceli uygulamalar."
+    >
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         BOOT SCREEN
+    ========================== -->
+    <div id="bootScreen" class="boot-screen">
+        <div class="boot-logo">K</div>
+        <h1>KürşatOS</h1>
+        <p>Sistem başlatılıyor...</p>
+
+        <div class="boot-progress">
+            <div id="bootProgress"></div>
+        </div>
+    </div>
+
+
+    <!-- =========================
+         DESKTOP
+    ========================== -->
+    <main id="desktop" class="desktop">
+
+        <!-- Background -->
+        <div class="background-glow"></div>
+
+        <!-- =====================
+             DESKTOP ICONS
+        ====================== -->
+        <section class="desktop-icons">
+
+            <button class="desktop-icon" onclick="openApp('games')">
+                <span class="icon">🎮</span>
+                <span>Oyunlar</span>
+            </button>
+
+            <button class="desktop-icon" onclick="openApp('quiz')">
+                <span class="icon">🧠</span>
+                <span>Test Merkezi</span>
+            </button>
+
+            <button class="desktop-icon" onclick="openApp('kingdom')">
+                <span class="icon">👑</span>
+                <span>Kuzeyyaka</span>
+            </button>
+
+            <button class="desktop-icon" onclick="openApp('mystery')">
+                <span class="icon">🕵️</span>
+                <span>Gizem Dosyaları</span>
+            </button>
+
+            <button class="desktop-icon" onclick="openApp('weird')">
+                <span class="icon">👁️</span>
+                <span>Garip İnternet</span>
+            </button>
+
+            <button class="desktop-icon" onclick="openApp('terminal')">
+                <span class="icon">⌨️</span>
+                <span>Terminal</span>
+            </button>
+
+            <button class="desktop-icon" onclick="openApp('files')">
+                <span class="icon">📁</span>
+                <span>Dosyalarım</span>
+            </button>
+
+            <button class="desktop-icon" onclick="openApp('achievements')">
+                <span class="icon">🏆</span>
+                <span>Başarımlar</span>
+            </button>
+
+        </section>
+
+
+        <!-- =====================
+             TOP STATUS
+        ====================== -->
+        <div class="system-status">
+
+            <div class="status-left">
+                <span class="online-dot"></span>
+                <span>Sistem çevrimiçi</span>
+            </div>
+
+            <div class="status-center">
+                <span id="systemMessage">
+                    KürşatOS'a hoş geldin.
+                </span>
+            </div>
+
+            <div class="status-right">
+                <span>🔋 100%</span>
+                <span>📶 Online</span>
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             WINDOWS AREA
+        ====================== -->
+        <section id="windowArea">
+
+
+            <!-- =================
+                 GAMES WINDOW
+            ================== -->
+            <div
+                id="window-games"
+                class="app-window"
+                data-app="games"
+            >
+
+                <div class="window-header">
+                    <div class="window-title">
+                        🎮 Oyun Merkezi
+                    </div>
+
+                    <div class="window-controls">
+                        <button onclick="minimizeApp('games')">−</button>
+                        <button onclick="maximizeApp('games')">□</button>
+                        <button onclick="closeApp('games')">×</button>
+                    </div>
+                </div>
+
+                <div class="window-content">
+
+                    <h2>Mini Oyunlar</h2>
+
+                    <p class="muted">
+                        Bir oyun seç ve XP toplamaya başla.
+                    </p>
+
+                    <div class="game-grid">
+
+                        <button class="game-card" onclick="startGame('click')">
+                            <span>⚡</span>
+                            <strong>Tıklama Yarışı</strong>
+                            <small>10 saniyede kaç kere tıklayabilirsin?</small>
+                        </button>
+
+                        <button class="game-card" onclick="startGame('reflex')">
+                            <span>🎯</span>
+                            <strong>Refleks Testi</strong>
+                            <small>Renk değiştiği anda tıkla.</small>
+                        </button>
+
+                        <button class="game-card" onclick="startGame('number')">
+                            <span>🔢</span>
+                            <strong>Sayı Tahmini</strong>
+                            <small>Gizli sayıyı bul.</small>
+                        </button>
+
+                    </div>
+
+                    <div id="gameContainer" class="game-container">
+                        <div class="empty-game">
+                            <span>🎮</span>
+                            <p>Bir oyun seç.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- =================
+                 QUIZ WINDOW
+            ================== -->
+            <div
+                id="window-quiz"
+                class="app-window"
+                data-app="quiz"
+            >
+
+                <div class="window-header">
+
+                    <div class="window-title">
+                        🧠 Test Merkezi
+                    </div>
+
+                    <div class="window-controls">
+                        <button onclick="minimizeApp('quiz')">−</button>
+                        <button onclick="maximizeApp('quiz')">□</button>
+                        <button onclick="closeApp('quiz')">×</button>
+                    </div>
+
+                </div>
+
+                <div class="window-content">
+
+                    <h2>KürşatOS Bilgi Testi</h2>
+
+                    <div id="quizContainer"></div>
+
+                </div>
+            </div>
+
+
+            <!-- =================
+                 KINGDOM WINDOW
+            ================== -->
+            <div
+                id="window-kingdom"
+                class="app-window"
+                data-app="kingdom"
+            >
+
+                <div class="window-header">
+
+                    <div class="window-title">
+                        👑 Kuzeyyaka Krallığı
+                    </div>
+
+                    <div class="window-controls">
+                        <button onclick="minimizeApp('kingdom')">−</button>
+                        <button onclick="maximizeApp('kingdom')">□</button>
+                        <button onclick="closeApp('kingdom')">×</button>
+                    </div>
+
+                </div>
+
+                <div class="window-content">
+
+                    <div class="kingdom-banner">
+
+                        <div class="crown">
+                            👑
+                        </div>
+
+                        <div>
+                            <h2>Kuzeyyaka Krallığı</h2>
+                            <p>
+                                Kuzeyin en güçlü krallığını kur.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <div class="kingdom-stats">
+
+                        <div class="stat-card">
+                            <span>💰</span>
+                            <strong id="gold">100</strong>
+                            <small>Altın</small>
+                        </div>
+
+                        <div class="stat-card">
+                            <span>🪵</span>
+                            <strong id="wood">100</strong>
+                            <small>Odun</small>
+                        </div>
+
+                        <div class="stat-card">
+                            <span>⚔️</span>
+                            <strong id="army">10</strong>
+                            <small>Asker</small>
+                        </div>
+
+                        <div class="stat-card">
+                            <span>⭐</span>
+                            <strong id="kingdomLevel">1</strong>
+                            <small>Seviye</small>
+                        </div>
+
+                    </div>
+
+                    <div class="kingdom-actions">
+
+                        <button onclick="kingdomAction('tax')">
+                            💰 Vergi Topla
+                        </button>
+
+                        <button onclick="kingdomAction('wood')">
+                            🪵 Odun Kes
+                        </button>
+
+                        <button onclick="kingdomAction('army')">
+                            ⚔️ Asker Eğit
+                        </button>
+
+                        <button onclick="kingdomAction('upgrade')">
+                            🏰 Krallığı Geliştir
+                        </button>
+
+                    </div>
+
+                    <div id="kingdomLog" class="terminal-log">
+                        Krallık sistemi başlatıldı...
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- =================
+                 MYSTERY WINDOW
+            ================== -->
+            <div
+                id="window-mystery"
+                class="app-window"
+                data-app="mystery"
+            >
+
+                <div class="window-header">
+
+                    <div class="window-title">
+                        🕵️ Gizem Dosyaları
+                    </div>
+
+                    <div class="window-controls">
+                        <button onclick="minimizeApp('mystery')">−</button>
+                        <button onclick="maximizeApp('mystery')">□</button>
+                        <button onclick="closeApp('mystery')">×</button>
+                    </div>
+
+                </div>
+
+                <div class="window-content">
+
+                    <div class="classified">
+                        <span>🔴 GİZLİ</span>
+                    </div>
+
+                    <h2>Dosya #731</h2>
+
+                    <p>
+                        KürşatOS içerisinde gizlenmiş bir sır var.
+                    </p>
+
+                    <p class="muted">
+                        İpucu: Bazı sayılar sandığından daha önemli olabilir.
+                    </p>
+
+                    <div class="mystery-input">
+
+                        <input
+                            id="mysteryCode"
+                            type="text"
+                            maxlength="10"
+                            placeholder="Kod gir..."
+                        >
+
+                        <button onclick="checkMystery()">
+                            🔓 Aç
+                        </button>
+
+                    </div>
+
+                    <div id="mysteryResult"></div>
+
+                </div>
+            </div>
+
+
+            <!-- =================
+                 WEIRD INTERNET
+            ================== -->
+            <div
+                id="window-weird"
+                class="app-window"
+                data-app="weird"
+            >
+
+                <div class="window-header">
+
+                    <div class="window-title">
+                        👁️ Garip İnternet
+                    </div>
+
+                    <div class="window-controls">
+                        <button onclick="minimizeApp('weird')">−</button>
+                        <button onclick="maximizeApp('weird')">□</button>
+                        <button onclick="closeApp('weird')">×</button>
+                    </div>
+
+                </div>
+
+                <div class="window-content weird-content">
+
+                    <div class="weird-eye">
+                        👁️
+                    </div>
+
+                    <h2>Garip İnternet</h2>
+
+                    <p>
+                        İnternette bulunmaması gereken bazı şeyler...
+                    </p>
+
+                    <button
+                        class="weird-button"
+                        onclick="randomWeird()"
+                    >
+                        Rastgele Bir Şey Göster
+                    </button>
+
+                    <div
+                        id="weirdResult"
+                        class="weird-result"
+                    >
+                        Hazır mısın?
+                    </div>
+
+                    <button
+                        class="danger-button"
+                        onclick="dontPress()"
+                    >
+                        ⚠️ SAKIN BASMA
+                    </button>
+
+                </div>
+            </div>
+
+
+            <!-- =================
+                 TERMINAL
+            ================== -->
+            <div
+                id="window-terminal"
+                class="app-window terminal-window"
+                data-app="terminal"
+            >
+
+                <div class="window-header">
+
+                    <div class="window-title">
+                        ⌨️ KürşatOS Terminal
+                    </div>
+
+                    <div class="window-controls">
+                        <button onclick="minimizeApp('terminal')">−</button>
+                        <button onclick="maximizeApp('terminal')">□</button>
+                        <button onclick="closeApp('terminal')">×</button>
+                    </div>
+
+                </div>
+
+                <div class="terminal-content">
+
+                    <div id="terminalOutput">
+
+                        <div>
+                            KürşatOS Terminal [Version 1.0]
+                        </div>
+
+                        <div>
+                            Yardım için <b>help</b> yaz.
+                        </div>
+
+                        <br>
+
+                    </div>
+
+                    <div class="terminal-input-row">
+
+                        <span>kursat@KursatOS:~$</span>
+
+                        <input
+                            id="terminalInput"
+                            type="text"
+                            autocomplete="off"
+                            spellcheck="false"
+                        >
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================
+                 FILES
+            ================== -->
+            <div
+                id="window-files"
+                class="app-window"
+                data-app="files"
+            >
+
+                <div class="window-header">
+
+                    <div class="window-title">
+                        📁 Dosyalarım
+                    </div>
+
+                    <div class="window-controls">
+                        <button onclick="minimizeApp('files')">−</button>
+                        <button onclick="maximizeApp('files')">□</button>
+                        <button onclick="closeApp('files')">×</button>
+                    </div>
+
+                </div>
+
+                <div class="window-content">
+
+                    <div class="file-list">
+
+                        <div class="file-item">
+                            <span>📄</span>
+                            <div>
+                                <strong>README.txt</strong>
+                                <small>KürşatOS hakkında</small>
+                            </div>
+                        </div>
+
+                        <div class="file-item">
+                            <span>🗺️</span>
+                            <div>
+                                <strong>Kuzeyyaka.map</strong>
+                                <small>Krallık haritası</small>
+                            </div>
+                        </div>
+
+                        <div class="file-item">
+                            <span>🔐</span>
+                            <div>
+                                <strong>secret.dat</strong>
+                                <small>Erişim engellendi</small>
+                            </div>
+                        </div>
+
+                        <div class="file-item">
+                            <span>🎮</span>
+                            <div>
+                                <strong>games.exe</strong>
+                                <small>Oyun merkezi</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <!-- =================
+                 ACHIEVEMENTS
+            ================== -->
+            <div
+                id="window-achievements"
+                class="app-window"
+                data-app="achievements"
+            >
+
+                <div class="window-header">
+
+                    <div class="window-title">
+                        🏆 Başarımlar
+                    </div>
+
+                    <div class="window-controls">
+                        <button onclick="minimizeApp('achievements')">−</button>
+                        <button onclick="maximizeApp('achievements')">□</button>
+                        <button onclick="closeApp('achievements')">×</button>
+                    </div>
+
+                </div>
+
+                <div class="window-content">
+
+                    <h2>Başarımlar</h2>
+
+                    <div id="achievementList"></div>
+
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- =====================
+             XP PANEL
+        ====================== -->
+        <div class="xp-panel">
+
+            <div class="profile">
+
+                <div class="profile-avatar">
+                    K
+                </div>
+
+                <div>
+                    <strong>Kürşat</strong>
+                    <small id="levelText">
+                        Seviye 1
+                    </small>
+                </div>
+
+            </div>
+
+            <div class="xp-bar-container">
+
+                <div class="xp-info">
+                    <span>XP</span>
+                    <span id="xpText">0 / 100</span>
+                </div>
+
+                <div class="xp-bar">
+                    <div
+                        id="xpProgress"
+                        class="xp-progress"
+                    ></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             TASKBAR
+        ====================== -->
+        <footer class="taskbar">
+
+            <button
+                class="start-button"
+                onclick="toggleStartMenu()"
+            >
+                <span>⊞</span>
+                <strong>KürşatOS</strong>
+            </button>
+
+            <div
+                id="taskbarApps"
+                class="taskbar-apps"
+            ></div>
+
+            <div class="taskbar-right">
+
+                <span id="taskbarTime">
+                    00:00
+                </span>
+
+                <button onclick="toggleStartMenu()">
+                    ⚙️
+                </button>
+
+            </div>
+
+        </footer>
+
+
+        <!-- =====================
+             START MENU
+        ====================== -->
+        <div
+            id="startMenu"
+            class="start-menu"
+        >
+
+            <div class="start-header">
+
+                <div class="profile-avatar">
+                    K
+                </div>
+
+                <div>
+                    <strong>KürşatOS</strong>
+                    <small>Sistem menüsü</small>
+                </div>
+
+            </div>
+
+            <div class="start-search">
+                🔎
+                <input
+                    id="appSearch"
+                    type="text"
+                    placeholder="Uygulama ara..."
+                    oninput="searchApps()"
+                >
+            </div>
+
+            <div
+                id="startApps"
+                class="start-apps"
+            >
+
+                <button onclick="openApp('games')">
+                    🎮 Oyunlar
+                </button>
+
+                <button onclick="openApp('quiz')">
+                    🧠 Test Merkezi
+                </button>
+
+                <button onclick="openApp('kingdom')">
+                    👑 Kuzeyyaka Krallığı
+                </button>
+
+                <button onclick="openApp('mystery')">
+                    🕵️ Gizem Dosyaları
+                </button>
+
+                <button onclick="openApp('weird')">
+                    👁️ Garip İnternet
+                </button>
+
+                <button onclick="openApp('terminal')">
+                    ⌨️ Terminal
+                </button>
+
+                <button onclick="openApp('files')">
+                    📁 Dosyalarım
+                </button>
+
+                <button onclick="openApp('achievements')">
+                    🏆 Başarımlar
+                </button>
+
+            </div>
+
+            <div class="start-footer">
+                KürşatOS v1.0
+            </div>
+
+        </div>
+
+
+        <!-- =====================
+             NOTIFICATION
+        ====================== -->
+        <div
+            id="notification"
+            class="notification"
+        >
+            <div id="notificationIcon">🔔</div>
+
+            <div>
+                <strong id="notificationTitle">
+                    Bildirim
+                </strong>
+
+                <p id="notificationText">
+                    KürşatOS hazır.
+                </p>
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+    <script src="script.js"></script>
+
+</body>
+</html>
